@@ -40,6 +40,9 @@ void inputEngineer(Engineer* engineerPtr) {
 }
 
 const void outputEngineer(Engineer* engineerPtr) {
-    cout << "Engineer type: " << engineerPtr->type;
+    static int counter{1};
+    cout << "Engineer #" << counter << '\n'
+         << "\tType: " << engineerPtr->type;
+    ++counter;
     cout << '\n';
 }
