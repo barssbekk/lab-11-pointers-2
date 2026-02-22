@@ -22,11 +22,11 @@ int main() {
     const int NUMS_ENGINEERS{5};
 
     Engineer* listEngineers{new Engineer[NUMS_ENGINEERS]};
-    for (int i{0}; i < NUMS_ENGINEERS; ++i)
+    for (int i{0}; i < NUMS_ENGINEERS; ++i) // populate the list
         inputEngineer(&listEngineers[i]);
 
     for (int i{0}; i < NUMS_ENGINEERS; ++i)
-        outputEngineer(&listEngineers[i]);
+        outputEngineer(&listEngineers[i]); // output
 
     delete[] listEngineers;
     return 0;
@@ -41,9 +41,9 @@ void inputEngineer(Engineer* engineerPtr) {
     while (engineerPtr->proficiencyLevel < 0 || engineerPtr->proficiencyLevel > 5) {
         cout << "Please enter (0-5): ";
         cin >> engineerPtr->proficiencyLevel;
-    }
+    } // ADD: maybe cin.fail();
     cin.ignore();
-
+    // ADD: *skills
     cout << '\n';
 }
 
