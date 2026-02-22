@@ -7,6 +7,12 @@ struct Engineer {
     string type;
     int proficiencyLevel;
     int* skills;
+
+    ~Engineer() {
+        if (skills)
+            delete[] skills;
+        skills = nullptr;
+    }
 };
 
 int main() {
