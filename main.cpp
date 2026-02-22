@@ -22,7 +22,11 @@ int main() {
     const int NUMS_ENGINEERS{5};
 
     Engineer* listEngineers{new Engineer[NUMS_ENGINEERS]};
-    inputEngineer(listEngineers);
+    for (int i{0}; i < NUMS_ENGINEERS; ++i)
+        inputEngineer(&listEngineers[i]);
+
+    for (int i{0}; i < NUMS_ENGINEERS; ++i)
+        outputEngineer(&listEngineers[i]);
 
     delete[] listEngineers;
     return 0;
@@ -31,8 +35,11 @@ int main() {
 void inputEngineer(Engineer* engineerPtr) {
     cout << "Engineer type: ";
     getline(cin, engineerPtr->type);
+
+    cout << '\n';
 }
 
 const void outputEngineer(Engineer* engineerPtr) {
-
+    cout << "Engineer type: " << engineerPtr->type;
+    cout << '\n';
 }
