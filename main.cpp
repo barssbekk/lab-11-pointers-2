@@ -15,16 +15,24 @@ struct Engineer {
     }
 };
 
+void inputEngineer(Engineer* engineerPtr);
+const void outputEngineer(Engineer* engineerPtr);
+
 int main() {
     const int NUMS_ENGINEERS{5};
 
-    Engineer* me{new Engineer[NUMS_ENGINEERS]};
+    Engineer* listEngineers{new Engineer[NUMS_ENGINEERS]};
+    inputEngineer(listEngineers);
 
-    delete[] me;
+    delete[] listEngineers;
     return 0;
 }
 
-void intputEngineer(Engineer* engineerPtr) {
+void inputEngineer(Engineer* engineerPtr) {
     cout << "Engineer type: ";
     getline(cin, engineerPtr->type);
+}
+
+const void outputEngineer(Engineer* engineerPtr) {
+
 }
