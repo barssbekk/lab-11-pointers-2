@@ -16,7 +16,7 @@ struct Engineer {
 };
 
 void inputEngineer(Engineer* engineerPtr);
-const void outputEngineer(Engineer* engineerPtr);
+void outputEngineer(const Engineer* engineerPtr);
 
 int main() {
     const int NUMS_ENGINEERS{5};
@@ -36,13 +36,18 @@ void inputEngineer(Engineer* engineerPtr) {
     cout << "Engineer type: ";
     getline(cin, engineerPtr->type);
 
+    cout << "Proficiency level: ";
+    cin >> engineerPtr->proficiencyLevel;
+    cin.ignore();
+
     cout << '\n';
 }
 
-const void outputEngineer(Engineer* engineerPtr) {
+void outputEngineer(const Engineer* engineerPtr) {
     static int counter{1};
     cout << "Engineer #" << counter << '\n'
-         << "\tType: " << engineerPtr->type;
+         << "\tType: " << engineerPtr->type << '\n'
+         << "\tProficiency level: " << engineerPtr->proficiencyLevel;
     ++counter;
     cout << '\n';
 }
