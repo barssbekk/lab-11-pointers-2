@@ -4,9 +4,9 @@
 using namespace std;
 
 struct Engineer {
-    string type;
-    int proficiencyLevel;
-    int* skills;
+    string type{};
+    int proficiencyLevel{};
+    int* skills{};
 
     ~Engineer() {
         if (skills)
@@ -16,6 +16,12 @@ struct Engineer {
 };
 
 int main() {
+    const int NUMS_ENGINEERS{5};
 
+    Engineer* me{new Engineer[NUMS_ENGINEERS]};
+
+    delete[] me;
     return 0;
 }
+
+//intputEngineer()
