@@ -24,4 +24,7 @@ int main() {
     return 0;
 }
 
-//intputEngineer()
+void intputEngineer(Engineer* engineerPtr) {
+    cout << "Engineer type: ";
+    getline(cin, engineerPtr->type);
+}
