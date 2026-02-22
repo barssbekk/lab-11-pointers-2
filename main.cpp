@@ -36,8 +36,12 @@ void inputEngineer(Engineer* engineerPtr) {
     cout << "Engineer type: ";
     getline(cin, engineerPtr->type);
 
-    cout << "Proficiency level: ";
+    cout << "Proficiency level (0-5): ";
     cin >> engineerPtr->proficiencyLevel;
+    while (engineerPtr->proficiencyLevel < 0 || engineerPtr->proficiencyLevel > 5) {
+        cout << "Please enter (0-5): ";
+        cin >> engineerPtr->proficiencyLevel;
+    }
     cin.ignore();
 
     cout << '\n';
