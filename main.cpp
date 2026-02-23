@@ -35,8 +35,7 @@ int main() {
 }
 
 void inputEngineer(Engineer* engineerPtr, const int size, const int numSkills) {
-    static int counter{1};
-    cout << "Engineer Data #" << counter << '\n'
+    cout << "Engineer Info\n"
          << "Engineer type: ";
     getline(cin, engineerPtr->type);
 
@@ -56,19 +55,18 @@ void inputEngineer(Engineer* engineerPtr, const int size, const int numSkills) {
         getline(cin, engineerPtr->skills[i]);
     }
     // cin.ignore();
-    ++counter;
-    cout << '\n';
 }
 
 void outputEngineer(const Engineer* engineerPtr, const int numSkills) {
-    static int counter{1};
-    cout << "Engineer #" << counter << '\n'
-         << "\tType: " << engineerPtr->type << '\n'
-         << "\tProficiency level: " << engineerPtr->proficiencyLevel << '\n'
-         << "\tSkills #" << counter << ": ";
-    for (int i{0}; i < numSkills; ++i) {
-        cout << engineerPtr->skills[i];
-    }
-    ++counter;
+    // static int counter{1};
+    // cout << "Engineer #" << counter << '\n'
     cout << '\n';
+    cout << "Type: " << engineerPtr->type << '\n'
+         << "Proficiency level: " << engineerPtr->proficiencyLevel << '\n';
+    for (int i{0}; i < numSkills; ++i) {
+        cout << "Skill #" << i + 1 << ": ";
+        cout << engineerPtr->skills[i] << '\n';
+    }
+    // ++counter;
+    cout << "----------------";
 }
