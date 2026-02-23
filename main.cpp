@@ -8,6 +8,7 @@ struct Engineer {
     string type{};
     int proficiencyLevel{};
     string* skills{};
+    int numsSkills{};
 
     ~Engineer() {
         if (skills)
@@ -16,25 +17,25 @@ struct Engineer {
     }
 };
 
-void inputEngineer(Engineer* engineerPtr, int size, int numSkills);
-void outputEngineer(const Engineer* engineerPtr, int numSkills);
+void inputEngineer(Engineer* engineerPtr);
+void outputEngineer(const Engineer* engineerPtr);
 
 int main() {
     const int NUMS_ENGINEERS{2};
-    constexpr int NUMS_SKILLS{3};
 
     Engineer* listEngineers{new Engineer[NUMS_ENGINEERS]};
     for (int i{0}; i < NUMS_ENGINEERS; ++i) // populate the list
-        inputEngineer(&listEngineers[i], NUMS_ENGINEERS, NUMS_SKILLS);
+        inputEngineer(&listEngineers[i]);
 
     for (int i{0}; i < NUMS_ENGINEERS; ++i)
-        outputEngineer(&listEngineers[i], NUMS_SKILLS); // output
+        outputEngineer(&listEngineers[i]); // output
 
     delete[] listEngineers;
     return 0;
 }
 
-void inputEngineer(Engineer* engineerPtr, const int size, const int numSkills) {
+void inputEngineer(Engineer* engineerPtr) {
+    int inputNumSkills{};
     cout << "Engineer Info\n"
          << "Engineer type: ";
     getline(cin, engineerPtr->type);
@@ -48,22 +49,26 @@ void inputEngineer(Engineer* engineerPtr, const int size, const int numSkills) {
     cin.ignore();
     // cin.ignore(numeric_limits<streamsize>::max(), '\n');
     // ADD: *skills
-    engineerPtr->skills = new string[size];
-    cout << "List 3 valuable skills\n";
-    for (int i{0}; i < numSkills; ++i) {
+    cout << "How many skills: ";
+    cin >> inputNumSkills;
+    cin.ignore();
+    engineerPtr->numsSkills = inputNumSkills;
+    engineerPtr->skills = new string[inputNumSkills];
+    cout << "List valuable skills\n";
+    for (int i{0}; i < inputNumSkills; ++i) {
         cout << "\tSkill # " << i + 1 << ": ";
         getline(cin, engineerPtr->skills[i]);
     }
     // cin.ignore();
 }
 
-void outputEngineer(const Engineer* engineerPtr, const int numSkills) {
+void outputEngineer(const Engineer* engineerPtr) {
     // static int counter{1};
     // cout << "Engineer #" << counter << '\n'
     cout << '\n';
     cout << "Type: " << engineerPtr->type << '\n'
          << "Proficiency level: " << engineerPtr->proficiencyLevel << '\n';
-    for (int i{0}; i < numSkills; ++i) {
+    for (int i{0}; i < engineerPtr->numsSkills; ++i) {
         cout << "Skill #" << i + 1 << ": ";
         cout << engineerPtr->skills[i] << '\n';
     }
