@@ -34,7 +34,9 @@ int main() {
 }
 
 void inputEngineer(Engineer* engineerPtr, const int size) {
-    cout << "Engineer type: ";
+    static int counter{1};
+    cout << "Engineer Data #" << counter << '\n'
+         << "Engineer type: ";
     getline(cin, engineerPtr->type);
 
     cout << "Proficiency level (0-5): ";
@@ -45,9 +47,13 @@ void inputEngineer(Engineer* engineerPtr, const int size) {
     }
     // cin.ignore(numeric_limits<streamsize>::max(), '\n');
     // ADD: *skills
-    cout << "Enter skills: ";
     Engineer* skills{new Engineer[size]};
-
+    for (int i{0}; i < size; ++i) {
+        cout << "Skill # " << i + 1 << ':';
+        cin >> engineerPtr->skills[i];
+    }
+    cin.ignore();
+    ++counter;
     cout << '\n';
 }
 
