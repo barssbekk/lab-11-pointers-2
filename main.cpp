@@ -7,7 +7,7 @@ using namespace std;
 struct Engineer {
     string type{};
     int proficiencyLevel{};
-    int* skills{};
+    string* skills{};
 
     ~Engineer() {
         if (skills)
@@ -45,14 +45,15 @@ void inputEngineer(Engineer* engineerPtr, const int size) {
         cout << "Please enter (0-5): ";
         cin >> engineerPtr->proficiencyLevel;
     }
+    cin.ignore();
     // cin.ignore(numeric_limits<streamsize>::max(), '\n');
     // ADD: *skills
-    Engineer* skills{new Engineer[size]};
+    engineerPtr->skills = new string[size];
     for (int i{0}; i < size; ++i) {
-        cout << "Skill # " << i + 1 << ':';
-        cin >> engineerPtr->skills[i];
+        cout << "Skill # " << i + 1 << ": ";
+        getline(cin, engineerPtr->skills[i]);
     }
-    cin.ignore();
+    // cin.ignore();
     ++counter;
     cout << '\n';
 }
