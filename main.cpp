@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <limits>
+// #include <limits>
 
 using namespace std;
 
@@ -16,24 +16,25 @@ struct Engineer {
     }
 };
 
-void inputEngineer(Engineer* engineerPtr, int size);
-void outputEngineer(const Engineer* engineerPtr);
+void inputEngineer(Engineer* engineerPtr, int size, int numSkills);
+void outputEngineer(const Engineer* engineerPtr, int numSkills);
 
 int main() {
-    const int NUMS_ENGINEERS{5};
+    const int NUMS_ENGINEERS{2};
+    constexpr int NUMS_SKILLS{3};
 
     Engineer* listEngineers{new Engineer[NUMS_ENGINEERS]};
     for (int i{0}; i < NUMS_ENGINEERS; ++i) // populate the list
-        inputEngineer(&listEngineers[i], NUMS_ENGINEERS);
+        inputEngineer(&listEngineers[i], NUMS_ENGINEERS, NUMS_SKILLS);
 
     for (int i{0}; i < NUMS_ENGINEERS; ++i)
-        outputEngineer(&listEngineers[i]); // output
+        outputEngineer(&listEngineers[i], NUMS_SKILLS); // output
 
     delete[] listEngineers;
     return 0;
 }
 
-void inputEngineer(Engineer* engineerPtr, const int size) {
+void inputEngineer(Engineer* engineerPtr, const int size, const int numSkills) {
     static int counter{1};
     cout << "Engineer Data #" << counter << '\n'
          << "Engineer type: ";
@@ -49,8 +50,9 @@ void inputEngineer(Engineer* engineerPtr, const int size) {
     // cin.ignore(numeric_limits<streamsize>::max(), '\n');
     // ADD: *skills
     engineerPtr->skills = new string[size];
-    for (int i{0}; i < size; ++i) {
-        cout << "Skill # " << i + 1 << ": ";
+    cout << "List 3 valuable skills\n";
+    for (int i{0}; i < numSkills; ++i) {
+        cout << "\tSkill # " << i + 1 << ": ";
         getline(cin, engineerPtr->skills[i]);
     }
     // cin.ignore();
@@ -58,11 +60,15 @@ void inputEngineer(Engineer* engineerPtr, const int size) {
     cout << '\n';
 }
 
-void outputEngineer(const Engineer* engineerPtr) {
+void outputEngineer(const Engineer* engineerPtr, const int numSkills) {
     static int counter{1};
     cout << "Engineer #" << counter << '\n'
          << "\tType: " << engineerPtr->type << '\n'
-         << "\tProficiency level: " << engineerPtr->proficiencyLevel;
+         << "\tProficiency level: " << engineerPtr->proficiencyLevel << '\n'
+         << "\tSkills #" << counter << ": ";
+    for (int i{0}; i < numSkills; ++i) {
+        cout << engineerPtr->skills[i];
+    }
     ++counter;
     cout << '\n';
 }
