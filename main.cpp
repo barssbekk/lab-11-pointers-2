@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <limits>
 
 using namespace std;
 
@@ -15,7 +16,7 @@ struct Engineer {
     }
 };
 
-void inputEngineer(Engineer* engineerPtr);
+void inputEngineer(Engineer* engineerPtr, int size);
 void outputEngineer(const Engineer* engineerPtr);
 
 int main() {
@@ -23,7 +24,7 @@ int main() {
 
     Engineer* listEngineers{new Engineer[NUMS_ENGINEERS]};
     for (int i{0}; i < NUMS_ENGINEERS; ++i) // populate the list
-        inputEngineer(&listEngineers[i]);
+        inputEngineer(&listEngineers[i], NUMS_ENGINEERS);
 
     for (int i{0}; i < NUMS_ENGINEERS; ++i)
         outputEngineer(&listEngineers[i]); // output
@@ -32,7 +33,7 @@ int main() {
     return 0;
 }
 
-void inputEngineer(Engineer* engineerPtr) {
+void inputEngineer(Engineer* engineerPtr, const int size) {
     cout << "Engineer type: ";
     getline(cin, engineerPtr->type);
 
@@ -41,9 +42,12 @@ void inputEngineer(Engineer* engineerPtr) {
     while (engineerPtr->proficiencyLevel < 0 || engineerPtr->proficiencyLevel > 5) {
         cout << "Please enter (0-5): ";
         cin >> engineerPtr->proficiencyLevel;
-    } // ADD: maybe cin.fail();
-    cin.ignore();
+    }
+    // cin.ignore(numeric_limits<streamsize>::max(), '\n');
     // ADD: *skills
+    cout << "Enter skills: ";
+    Engineer* skills{new Engineer[size]};
+
     cout << '\n';
 }
 
